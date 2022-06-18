@@ -1,0 +1,25 @@
+ffprobe version 2.8.15 Copyright (c) 2007-2018 the FFmpeg developers
+  built with gcc 4.8.5 (GCC) 20150623 (Red Hat 4.8.5-28)
+  configuration: --prefix=/usr --bindir=/usr/bin --datadir=/usr/share/ffmpeg --incdir=/usr/include/ffmpeg --libdir=/usr/lib64 --mandir=/usr/share/man --arch=x86_64 --optflags='-O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic' --extra-ldflags='-Wl,-z,relro ' --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libvo-amrwbenc --enable-version3 --enable-bzlib --disable-crystalhd --enable-gnutls --enable-ladspa --enable-libass --enable-libcdio --enable-libdc1394 --disable-indev=jack --enable-libfreetype --enable-libgsm --enable-libmp3lame --enable-openal --enable-libopenjpeg --enable-libopus --enable-libpulse --enable-libschroedinger --enable-libsoxr --enable-libspeex --enable-libtheora --enable-libvorbis --enable-libv4l2 --enable-libx264 --enable-libx265 --enable-libxvid --enable-x11grab --enable-avfilter --enable-avresample --enable-postproc --enable-pthreads --disable-static --enable-shared --enable-gpl --disable-debug --disable-stripping --shlibdir=/usr/lib64 --enable-runtime-cpudetect
+  libavutil      54. 31.100 / 54. 31.100
+  libavcodec     56. 60.100 / 56. 60.100
+  libavformat    56. 40.101 / 56. 40.101
+  libavdevice    56.  4.100 / 56.  4.100
+  libavfilter     5. 40.101 /  5. 40.101
+  libavresample   2.  1.  0 /  2.  1.  0
+  libswscale      3.  1.101 /  3.  1.101
+  libswresample   1.  2.101 /  1.  2.101
+  libpostproc    53.  3.100 / 53.  3.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/work9/cchen/project/CNCeleb/cnc3_final/demo/part0/data/transcoded-data//超级小桀/livebroadcast/livebroadcast-1.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf56.40.101
+  Duration: 00:09:22.08, start: 0.025057, bitrate: 3412 kb/s
+    Stream #0:0(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p, 1920x1080, 3277 kb/s, 25 fps, 25 tbr, 12800 tbn, 50 tbc (default)
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: mp3 (mp4a / 0x6134706D), 44100 Hz, stereo, s16p, 127 kb/s (default)
+    Metadata:
+      handler_name    : SoundHandler

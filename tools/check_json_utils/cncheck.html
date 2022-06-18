@@ -1,0 +1,315 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Check CNC</title>
+    <meta charset="gb18030">
+</head>
+
+<body>
+    <div>
+        <!-- upload json file-->
+        <input type="file" id="js">
+    </div>
+    <div id="videoshow">
+        <!-- video player -->
+        <embed type="video/webm" id="video" src="" width="800" height="600">
+    </div>
+    <!-- some video info -->
+    <div id="vdo">
+    </div>
+    <!-- some video info -->
+    <div id="vdo2">
+    </div>
+    <div>
+        <!-- init video -->
+        <button type="button" id="init">init</button>
+    </div>
+    <div>
+        <!-- keep video -->
+        <button type="button" id="keep">keep and next</button>
+        <!-- genre modification --> genre modify info: <select id="modinfo">
+            <option> No modify </option>
+            <option> Entertainment </option>
+            <option> Interview </option>
+            <option> Live_Broadcast </option>
+            <option> Singing </option>
+            <option> Speech </option>
+            <option> Vlog </option>
+            <option> Drama </option>
+            <option> Interview </option>
+            <option> Livebroadcast </option>
+            <option> Singing </option>
+            <option> Vlog </option>
+        </select>
+    </div>
+    <div>
+        <!-- delete video -->
+        <button type="button" id="del"> delet and next</button>
+        <!-- delete reason --> delet info: <select id="delinfo">
+            <option> spk miss match </option>
+            <option> no spk </option>
+            <option> spk to short </option>
+        </select>
+    </div>
+    <div>
+        <!-- re-play last one -->
+        <button type="button" id="last"> recheck last one</button>
+        <!-- skip without any operation -->
+        <button type="button" id="skip"> skip this one </button>
+    </div>
+    <div>
+        <!-- save current keeped file into a json file-->
+        <button type="button" id="save_current"> save current</button>
+        <!-- save current deleted file into a json file-->
+        <button type="button" id="save_delet"> save delet</button>
+        <!-- save rest video -->
+        <button type="button" id="save_rest"> save rest</button>
+    </div>
+    <div id="res">
+    </div>
+    <script type="text/JavaScript" src="jsSaver.js" , charset="utf-8"></script>
+    <script language="JavaScript">
+        // json key "url" "start_time" "duration" "name" "genre" "filename"
+        // dict class
+        function Dict() {
+            this.add = add; // add a element
+            this.data = new Array(); // add data/content for one element
+            this.remove = remove; // remove one data
+            this.find = find; // find one data according to key
+            this.count = count; // count 
+            this.showall = showall; // show  <key: object>
+            this.showdetail = showdetail; // show <key: content> 
+        }
+        function add(key, value) {
+            this.data[key] = value;
+        }
+        function remove(key, value) {
+            delete this.data[key];
+        }
+        function find(key) {
+            return this.data[key];
+        }
+        function count() {
+            var n = 0;
+            for (var key in Object.keys(this.data)) {
+                ++n;
+            }
+            return n;
+        }
+        function showall() {
+            var str = "[\n";
+            all = this.count()
+            show_count = 0
+            for (var key in this.data) {
+                //str += key + ": " + this.data[key].showdetail() + ",";
+                show_count += 1
+                if (show_count == all) {
+                    is_final = 1
+                } else {
+                    is_final = -1
+                }
+                str += "    " + this.data[key].showdetail(is_final)
+            }
+            str += "]\n";
+            return str;
+            //document.querySelector("#res").innerHTML = str
+        }
+
+        function showdetail(is_final) {
+            // return data in json format
+            var str = "{\n"
+            for (var key in this.data) {
+                str += "           \"" + key + "\": " + "\"" + this.data[key] + "\"";
+                if (key != 'filename') {
+                    str += ",\n";
+                } else {
+                    str += "\n";
+                }
+                //str += "\"" + key +"\": " + "\"" + this.data[key] + "\"" +",\n";
+            }
+            if (is_final == 1) {
+                str += "    }\n"
+            } else {
+                str += "    },\n"
+            }
+            //document.querySelector("#res").innerHTML = str;
+            return str;
+        }
+
+        // TODO: save all json with only one buttent
+        // read json key automatically
+        // TODO: add a div to show the history files
+        var json; // load json list
+        var all_data_len; // all data length
+        var current_file = 0; // checked id
+        var keep_json = new Dict(); // object which store keeped data
+        var delet_json = new Dict(); // object which store deleted data
+
+        document.getElementById("skip").onclick = function () {
+            current_file += 1
+            check_final()
+            js_obj = json[current_file];
+            var video_player = document.getElementById("video");
+            // show some info in div region
+            document.querySelector("#vdo").innerHTML = "Current file: " + js_obj.filename +
+                "   genre: " + js_obj.genre;
+            video_player.src = js_obj.filename;
+            var video_player = document.getElementById("video");
+            video_player.play;
+        }
+
+        document.getElementById("init").onclick = function () {
+            // json key "url" "start_time" "duration" "name" "genre" "filename"
+            current_file = 0;
+            js_obj = json[current_file];
+            var video_player = document.getElementById("video");
+            document.querySelector("#vdo").innerHTML = "Current file: " + js_obj.filename +
+                "   genre: " + js_obj.genre;
+            video_player.src = js_obj.filename;
+            var video_player = document.getElementById("video");
+            video_player.play;
+        }
+
+        document.getElementById("keep").onclick = function () {
+            // json key "url" "start_time" "duration" "name" "genre" "filename"
+            // save the current state
+            js_obj = json[current_file];
+            var one_data = new Dict()
+            var genre = document.getElementById("modinfo").value;
+            if (genre == "No modify") {
+                var genre = js_obj.genre;
+            }
+            one_data.add('url', js_obj.url)
+            one_data.add('start_time', js_obj.start_time)
+            one_data.add('duration', js_obj.duration)
+            one_data.add('name', js_obj.name)
+            one_data.add('genre', genre)
+            one_data.add('filename', js_obj.filename)
+            keep_json.add(current_file, one_data)
+            document.getElementById("modinfo").value = "No modify"
+            current_file += 1; // this is important !!
+            check_final()
+            js_obj = json[current_file];
+            var video_player = document.getElementById("video");
+            document.querySelector("#vdo").innerHTML = "Current file: " + js_obj.filename +
+                "   genre: " + js_obj.genre;
+            video_player.src = js_obj.filename;
+            var video_player = document.getElementById("video");
+            video_player.play;
+        }
+
+        document.getElementById("del").onclick = function () {
+            // json key "url" "start_time" "duration" "name" "genre" "filename"
+            js_obj = json[current_file];
+            var one_data = new Dict()
+            var delet_info = document.getElementById("delinfo").value;
+            one_data.add('url', js_obj.url);
+            one_data.add('start_time', js_obj.start_time);
+            one_data.add('duration', js_obj.duration);
+            one_data.add('name', js_obj.name);
+            one_data.add('genre', js_obj.genre);
+            one_data.add('delinfo', delet_info);
+            one_data.add('filename', js_obj.filename);
+            delet_json.add(current_file, one_data);
+            document.getElementById("delinfo").value = "spk miss match"
+            if (current_file in Object.keys(keep_json)) {
+                keep_json.remove(current_file)
+            } // if current file is in keep_json delete it
+            current_file += 1;
+            check_final()
+            js_obj = json[current_file];
+            var video_player = document.getElementById("video");
+            document.querySelector("#vdo").innerHTML = "Current file: " + js_obj.filename +
+                "   genre: " + js_obj.genre;
+            video_player.src = js_obj.filename;
+            var video_player = document.getElementById("video");
+            video_player.play;
+        }
+
+        document.getElementById("last").onclick = function () {
+            // json key "url" "start_time" "duration" "name" "genre" "filename"
+            current_file -= 1;
+            check_final()
+            if (current_file < 0) {
+                document.querySelector("#vdo").innerHTML = "THIS IS THE FIRST ONE"
+                current_file = 0
+                return 1
+            }
+            js_obj = json[current_file];
+            var video_player = document.getElementById("video");
+            document.querySelector("#vdo").innerHTML = "Current file: " + js_obj.filename +
+                "   genre: " + js_obj.genre;
+            video_player.src = js_obj.filename;
+            var video_player = document.getElementById("video");
+            video_player.play;
+            var one_data = new Dict()
+            one_data.add('url', js_obj.url)
+            one_data.add('start_time', js_obj.start_time)
+            one_data.add('duration', js_obj.duration)
+            one_data.add('name', js_obj.name)
+            one_data.add('genre', js_obj.genre)
+            one_data.add('filename', js_obj.filename)
+            delet_json.add(current_file, one_data)
+            document.getElementById("delinfo").value = "spk miss match"
+            document.getElementById("modinfo").value = "No modify"
+        }
+
+        document.getElementById("save_current").onclick = function () {
+            save_json(keep_json, "current_keeped.json")
+        }
+
+        document.getElementById("save_delet").onclick = function () {
+            save_json(delet_json, "deleted.json")
+        }
+
+        document.getElementById("save_rest").onclick = function () {
+            rest_json = new Dict()
+            for (var i = current_file; i < json.length; i++) {
+                js_obj = json[i];
+                var one_data = new Dict();
+                one_data.add('url', js_obj.url);
+                one_data.add('start_time', js_obj.start_time);
+                one_data.add('duration', js_obj.duration);
+                one_data.add('name', js_obj.name);
+                one_data.add('genre', js_obj.genre);
+                one_data.add('filename', js_obj.filename);
+                rest_json.add(i, one_data);
+            }
+            save_json(rest_json, "rest_data.json")
+        }
+
+        function save_json(sjson, name) {
+            var saved = sjson.showall()
+            var data = new Blob([saved], { type: "text/plain;charset=utf-8" }); // jsSaver function
+            saveAs(data, name) // jsSaver function
+        }
+
+        function check_final() {
+            c = current_file + 1
+            document.querySelector("#vdo2").innerHTML = "Current num: " + c +
+                "   all: " + all_data_len;
+            if (current_file > all_data_len - 1) {
+                document.querySelector("#videoshow").innerHTML = "All data has checked down. Remeber to save result!!!!!!!"
+                saveAs(keep_json, "Final_keeped_result.json")
+            }
+        }
+
+        var inputElement = document.getElementById('js')
+        inputElement.addEventListener("change", jsfile, false)
+        function jsfile() {
+            var selectedFile = document.getElementById('js').files[0];
+            var name = selectedFile.name;
+            var size = selectedFile.size;
+            var reader = new FileReader();
+            reader.readAsText(selectedFile);
+            reader.onload = function (e) {
+                json = JSON.parse(this.result);
+                all_data_len = json.length
+            };
+
+        }
+    </script>
+</body>
+
+</html

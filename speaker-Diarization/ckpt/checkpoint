@@ -1,0 +1,2 @@
+model_checkpoint_path: "logistic.ckpt-80000"
+all_model_checkpoint_paths: "logistic.ckpt-80000"
