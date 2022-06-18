@@ -51,6 +51,8 @@ python version 2.7.12
 
 本目录下的`demo/`文件夹给出了对两个POI进行全流程操作的一个实例，你可以跟着本文给出的代码在`demo/part0/`中一步步操作，并对得到的结果与`demo/part0_example/`中的示例进行对比以确保自己处于正确的道路上。
 
+由于文件太大，请从链接中下载[part0_example](https://cloud.tsinghua.edu.cn/f/5cc4c5e695064b22915c/)并解压为`demo/part0_example/`
+
 特别关注：我们只需要运行【在本demo中，你只需要运行：】后面给出的代码即可运行这个demo
 
 ### step -1: 创建正确的文件夹结构
