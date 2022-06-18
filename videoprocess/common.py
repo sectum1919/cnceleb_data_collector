@@ -8,15 +8,15 @@ class Config:
     temp_dir = './temp'
 
     # 切分标签输出路径，可以输出到与视频相同的文件夹下，文件路径结构与视频向相同
-    output_dir = '/work9/cchen/project/CNCeleb/cnc3_final/demo/part0/logs/syncnet_result/'       # ${syncnet_output_dir} in run.sh
+    output_dir = '/work9/cchen/project/CNCeleb/cnceleb_data_collector/demo/part0/logs/syncnet_result/'       # ${syncnet_output_dir} in run.sh
 
     # 视频及文图根路径，文件结构为
     # {video_base_dir}/名人/类别/该类别视频
     # {image_base_dir}/名人/该名人所有照片
     # {wav_output_dir} 声纹识别出的txt的顶层目录
-    video_base_dir = '/work9/cchen/project/CNCeleb/cnc3_final/demo/part0/data/transcoded-data/'  # ${output_video_path) in run.sh
-    image_base_dir = "/work9/cchen/project/CNCeleb/cnc3_final/demo/part0/logs/pictures/"     # ${img_path} in  run.sh
-    wav_output_dir = "/work9/cchen/project/CNCeleb/cnc3_final/demo/part0/logs/wav_result/"       # ${wav_output_dir} in run.sh
+    video_base_dir = '/work9/cchen/project/CNCeleb/cnceleb_data_collector/demo/part0/data/transcoded-data/'  # ${output_video_path) in run.sh
+    image_base_dir = "/work9/cchen/project/CNCeleb/cnceleb_data_collector/demo/part0/logs/pictures/"     # ${img_path} in  run.sh
+    wav_output_dir = "/work9/cchen/project/CNCeleb/cnceleb_data_collector/demo/part0/logs/wav_result/"       # ${wav_output_dir} in run.sh
     # video_num = 1
     # video_dir = [os.path.join(os.getcwd(), 'videos', POI, file) for file in
     #              os.listdir(os.path.join(os.getcwd(), 'videos', POI))][video_num - 1]

@@ -3,18 +3,18 @@
 
 stage=0
 
-Name_list_path='/work9/cchen/project/CNCeleb/cnc3_final/demo/part0/data/part0.txt'
-img_path='/work9/cchen/project/CNCeleb/cnc3_final/demo/part0/logs/pictures/'
-metadata_path='/work9/cchen/project/CNCeleb/cnc3_final/demo/part0/data/metadata'
+Name_list_path='/work9/cchen/project/CNCeleb/cnceleb_data_collector/demo/part0/data/part0.txt'
+img_path='/work9/cchen/project/CNCeleb/cnceleb_data_collector/demo/part0/logs/pictures/'
+metadata_path='/work9/cchen/project/CNCeleb/cnceleb_data_collector/demo/part0/data/metadata'
 
-input_video_path='/work9/cchen/project/CNCeleb/cnc3_final/demo/part0/data/original-data/'
-output_video_path='/work9/cchen/project/CNCeleb/cnc3_final/demo/part0/data/transcoded-data/'
+input_video_path='/work9/cchen/project/CNCeleb/cnceleb_data_collector/demo/part0/data/original-data/'
+output_video_path='/work9/cchen/project/CNCeleb/cnceleb_data_collector/demo/part0/data/transcoded-data/'
 
-syncnet_output_dir='/work9/cchen/project/CNCeleb/cnc3_final/demo/part0/logs/syncnet_result/'
-wav_output_dir='/work9/cchen/project/CNCeleb/cnc3_final/demo/part0/logs/wav_result/'
-sysp_output_dir='/work9/cchen/project/CNCeleb/cnc3_final/demo/part0/logs/sysp_result/'
+syncnet_output_dir='/work9/cchen/project/CNCeleb/cnceleb_data_collector/demo/part0/logs/syncnet_result/'
+wav_output_dir='/work9/cchen/project/CNCeleb/cnceleb_data_collector/demo/part0/logs/wav_result/'
+sysp_output_dir='/work9/cchen/project/CNCeleb/cnceleb_data_collector/demo/part0/logs/sysp_result/'
 
-final_output_dir='/work9/cchen/project/CNCeleb/cnc3_final/demo/part0/data/final_data/'
+final_output_dir='/work9/cchen/project/CNCeleb/cnceleb_data_collector/demo/part0/data/final_data/'
 
 
 #Download pictures of pois from the list

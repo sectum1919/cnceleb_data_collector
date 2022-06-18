@@ -119,15 +119,15 @@ sh run.sh
 在本demo中，你只需要运行：
 ```
 python generate_splited_json.py \
-    --metadata-path /work9/cchen/project/CNCeleb/cnc3_final/demo/part0/data/metadata/ \
-    --split-path /work9/cchen/project/CNCeleb/cnc3_final/demo/part0/logs/sysp_result/ \
-    --data-path /work9/cchen/project/CNCeleb/cnc3_final/demo/part0/data/final_data/
+    --metadata-path /work9/cchen/project/CNCeleb/cnceleb_data_collector/demo/part0/data/metadata/ \
+    --split-path /work9/cchen/project/CNCeleb/cnceleb_data_collector/demo/part0/logs/sysp_result/ \
+    --data-path /work9/cchen/project/CNCeleb/cnceleb_data_collector/demo/part0/data/final_data/
 
-cp /work9/cchen/project/CNCeleb/cnc3_final/demo/part0/data/metadata/超级小桀/interview/final_data.json /work9/cchen/project/CNCeleb/cnc3_final/demo/part0/data/metadata/超级小桀/interview/checked.json
-cp /work9/cchen/project/CNCeleb/cnc3_final/demo/part0/data/metadata/超级小桀/livebroadcast/final_data.json /work9/cchen/project/CNCeleb/cnc3_final/demo/part0/data/metadata/超级小桀/livebroadcast/checked.json
+cp /work9/cchen/project/CNCeleb/cnceleb_data_collector/demo/part0/data/metadata/超级小桀/interview/final_data.json /work9/cchen/project/CNCeleb/cnceleb_data_collector/demo/part0/data/metadata/超级小桀/interview/checked.json
+cp /work9/cchen/project/CNCeleb/cnceleb_data_collector/demo/part0/data/metadata/超级小桀/livebroadcast/final_data.json /work9/cchen/project/CNCeleb/cnceleb_data_collector/demo/part0/data/metadata/超级小桀/livebroadcast/checked.json
 
-cp /work9/cchen/project/CNCeleb/cnc3_final/demo/part0/data/metadata/寅子/interview/final_data.json /work9/cchen/project/CNCeleb/cnc3_final/demo/part0/data/metadata/寅子/interview/checked.json
-cp /work9/cchen/project/CNCeleb/cnc3_final/demo/part0/data/metadata/寅子/livebroadcast/final_data.json /work9/cchen/project/CNCeleb/cnc3_final/demo/part0/data/metadata/寅子/livebroadcast/checked.json
+cp /work9/cchen/project/CNCeleb/cnceleb_data_collector/demo/part0/data/metadata/寅子/interview/final_data.json /work9/cchen/project/CNCeleb/cnceleb_data_collector/demo/part0/data/metadata/寅子/interview/checked.json
+cp /work9/cchen/project/CNCeleb/cnceleb_data_collector/demo/part0/data/metadata/寅子/livebroadcast/final_data.json /work9/cchen/project/CNCeleb/cnceleb_data_collector/demo/part0/data/metadata/寅子/livebroadcast/checked.json
 ```
 
 ### step 3 : 发布数据
@@ -137,7 +137,7 @@ cp /work9/cchen/project/CNCeleb/cnc3_final/demo/part0/data/metadata/寅子/liveb
 在本demo中，你只需要运行：
 ```
 python release_data.py \
-    --work-dir /work9/cchen/project/CNCeleb/cnc3_final/demo/part0/ \
+    --work-dir /work9/cchen/project/CNCeleb/cnceleb_data_collector/demo/part0/ \
     --video-folder data/final_data/ \
     --json-folder data/metadata/ \
     --startid 20000 \

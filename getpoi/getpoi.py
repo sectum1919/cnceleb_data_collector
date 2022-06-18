@@ -22,7 +22,7 @@ need = 10
 image_size = 160
 margin = 32
 gpu_memory_fraction = 0.7
-model = "/work9/cchen/project/CNCeleb/cnc3_final/getpoi/facenet_code/20180402-114759"
+model = "/work9/cchen/project/CNCeleb/cnceleb_data_collector/getpoi/facenet_code/20180402-114759"
 
 
 def check(name, picdir):
