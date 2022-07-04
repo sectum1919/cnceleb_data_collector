@@ -1,5 +1,55 @@
 # CNCeleb3
 
+## Prepare
+
+### Install CUDA-8.0
+
+make sure cuda-8.0 is installed
+
+### Install gcc-6.1.0
+
+make sure gcc-6.1.0 is installed
+
+### Install portaudio
+
+install portaudio V19
+
+### Establish Environment
+
+#### install mxnet manually
+
+```bash
+# create virtual environment
+conda create -n cnceleb python=2.7.12
+source activate cnceleb
+# install torch==0.4.0
+# notice the difference between 'cp27mu' & 'cp27m'
+wget https://download.pytorch.org/whl/cu80/torch-0.4.0-cp27-cp27mu-linux_x86_64.whl
+pip install torch-0.4.0-cp27-cp27mu-linux_x86_64.whl
+pip install numpy==1.14.3
+pip install scipy==1.0.1
+pip install opencv_contrib_python
+pip install python_speech_features==0.6
+pip install llvmlite==0.31.0
+pip install protobuf==3.8.0
+pip install cython
+pip install keras==2.2.5
+pip install tensorflow-gpu==1.14.0
+pip install pyaudio
+pip install MxNet
+pip install future
+pip install sklearn
+pip install scikit-image
+pip install easydict
+pip install pandas
+pip install xlrd==1.2.0
+pip install imageio==2.6.1
+pip install librosa==0.7.2
+# make RetinaFace
+cd RetinaFace
+cd RetinaFace/insightface/RetinaFace_linux/
+make
+```
 ## Environments
 
 python version 2.7.12
