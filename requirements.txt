@@ -19,7 +19,7 @@ futures==3.3.0
 gast==0.5.3
 google-pasta==0.2.0
 graphviz==0.8.4
-grpcio==1.41.1
+grpcio==1.36.1
 h5py==2.10.0
 html5lib==0.9999999
 idna==2.10

@@ -51,10 +51,18 @@ cd RetinaFace/insightface/RetinaFace_linux/
 make
 ```
 ## Environments
-
+### python2
 python version 2.7.12
 
 提供了pip freeze导出的requirements.txt
+
+### python3
+python version 3.8.13
+
+requirements:
+1)	requests
+2)	tqdm
+3)	you-get
 
 ## Path to modify
 
@@ -62,10 +70,11 @@ python version 2.7.12
 
 | filename                      | line       |
 | ----------------------------- | ---------- |
-| run.sh                        | line 6~16  |
+| run.sh                        | line 6~17  |
 | getpoi/getpoi.py              | line 25    |
 | speaker-Diarization/common.py | line 4~6   |
 | videoprocess/common.py        | line 11~19 |
+| tools/download_video.py        | line 65 |
 
 ## Model to download
 
@@ -123,7 +132,7 @@ python version 2.7.12
 
 这可能听起来很麻烦，幸运的是，使用`tools/download_video.py`中提供的爬虫可以快速地爬取b站搜索得到的视频并生成对应的json，也可以根据json直接下载视频！
 
-但需要注意的是，此脚本应当运行在python3环境下（与step 1需要的环境不同），同时必须遵循以下步骤：
+但需要注意的是，此脚本应当运行在**python3**环境下（与step 1需要的环境不同），同时必须遵循以下步骤：
 
 - 必须在改写代码后手动调用脚本进行爬取
 - 在爬取后得到json文件，必须人工审核并删除其中不符合需求的视频
@@ -140,6 +149,7 @@ python download_video.py
 
 ### step 1 : 调用run.sh
 
+注意，该步骤运行在**python2**环境下
 `run.sh` 是对视频进行各种处理的最关键脚本，它串联起了整个处理流程中的绝大部分，如果感兴趣的话，本文最后给出了它对视频进行处理的pipeline（强烈推荐去看一下哦）。
 
 如果顺利的话，在这个步骤中我们需要做的事情并不多。但如果运行中出了问题，那么就需要你自己来找找问题所在了~
@@ -151,7 +161,7 @@ sh run.sh
 
 ### step 2 : 审核切片
 
-在`run.sh`运行完毕后，使用`tools/generate_splited_json.py`根据`run.sh`运行得到的最终结果生成所有视频切片的json文件。文件名为final_data.json，以在名称上对应`data/final_data/`。但需要注意的是，此脚本应当运行在python3环境下（与step 1需要的环境不同）。
+在`run.sh`运行完毕后，使用`tools/generate_splited_json.py`根据`run.sh`运行得到的最终结果生成所有视频切片的json文件。文件名为final_data.json，以在名称上对应`data/final_data/`。但需要注意的是，此脚本应当运行在**python3**环境下**（与step 1需要的环境不同）**。
 
 然后，我们需要人工地审核json文件中给出的所有视频切片，并对其内容进行修改。通过修改json文件，我们就可以决定哪些视频需要删除，这省去了直接操作视频的麻烦。
 
@@ -184,7 +194,7 @@ cp /work9/cchen/project/CNCeleb/cnceleb_data_collector/demo/part0/data/metadata/
 
 ### step 3 : 发布数据
 
-在审核完毕所有json后，我们就可以根据最终保留的视频文件信息来生成可以直接发布的数据，这一步骤由`tools/release_data.py`完全包含，我们只需要传入合适的参数，请阅读上述python文件后进行调用。但需要注意的是，此脚本应当运行在python3环境下（与step 1需要的环境不同）。
+在审核完毕所有json后，我们就可以根据最终保留的视频文件信息来生成可以直接发布的数据，这一步骤由`tools/release_data.py`完全包含，我们只需要传入合适的参数，请阅读上述python文件后进行调用。但需要注意的是，此脚本应当运行在**python3环境**下**（与step 1需要的环境不同）**。
 
 在本demo中，你只需要运行：
 ```

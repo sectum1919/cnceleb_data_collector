@@ -82,7 +82,7 @@ if __name__ == '__main__':
     )
 
     print("************************************************")
-    print("6. Generate final audios & metadtas, this will take a long time")
+    print("6. Generate final audios & metadatas, this will take a long time")
     print("************************************************")
     generate_audios(
         id_list_file       = os.path.join(work_dir, video_tmp_save_path, 'id_list.txt'),
