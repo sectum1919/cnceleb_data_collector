@@ -1,4 +1,4 @@
-# CNCeleb3
+# CNCeleb
 
 ## Prepare
 
